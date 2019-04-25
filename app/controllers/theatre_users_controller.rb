@@ -1,0 +1,2 @@
+class TheatreUsersController < ApplicationController
+end
