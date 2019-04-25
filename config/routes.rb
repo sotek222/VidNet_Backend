@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :friends
-  resources :theatre_users
-  resources :theatres
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    namespace :v1 do
+      resources :friends
+      resources :theatre_users
+      resources :theatres
+      resources :users
+    end
+  end
 end
