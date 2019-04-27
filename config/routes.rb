@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       resources :theatre_users
       resources :theatres
       resources :users
+
     end
   end
+
+  mount ActionCable.server => '/cable'
+
 end
