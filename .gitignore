@@ -21,3 +21,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore env for API keys and Secrets for JWT
+.env

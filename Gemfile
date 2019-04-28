@@ -5,14 +5,21 @@ ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
+# Use rubocop to beautify ruby code
+gem 'rubocop-performance'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -20,8 +27,12 @@ gem 'bcrypt', '~> 3.1.7'
 # Use ActiveSerializer for Serializing response database
 gem 'active_model_serializers', '~> 0.10.0'
 
+# Use dotenv for calling environment vairables from the .env file
+gem 'dotenv-rails'
 
+# Use rails erd to generate erd diagrams, to check for accuracy, after you've made migrations
 gem 'rails-erd', group: :development
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -49,3 +60,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "jwt", "~> 2.1"
