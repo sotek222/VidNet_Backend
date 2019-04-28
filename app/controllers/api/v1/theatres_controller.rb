@@ -9,13 +9,13 @@ class Api::V1::TheatresController < ApplicationController
   def show
     theatre = Theatre.find(params[:id])
     # byebug
-    # TheatreChannel.broadcast_to(theatre, {data: "Test"})
+    TheatreChannel.broadcast_to(theatre, theatre)
     render json: theatre
   end
 
   def update
     theatre = Theatre.find(params[:id])
-    theatre.update(theatre_params)
+    theatre.update(playing: params[:playing], muted: params[:muted], elapsed_time: params[:elapsed_time])
     TheatreChannel.broadcast_to(theatre, theatre)
     render json: theatre
 
@@ -30,7 +30,7 @@ class Api::V1::TheatresController < ApplicationController
   private
 
   def theatre_params
-    params.require(:theatre).permit(:host_id, :src, :text_chat, :audio_chat, :video_chat, :is_public, :playing, :muted, :volume, :elapsed_time)
+    params.require(:theatre).permit(:host_id, :src, :text_chat, :audio_chat, :video_chat, :is_public, :playing, :muted, :elapsed_time)
   end
 
 end
