@@ -1,14 +1,18 @@
 class Api::V1::TheatresController < ApplicationController
+  skip_before_action :authorized, only: [:show, :update]
+
+  def index
+    theatres = Theatre.all
+    render json: theatres
+  end
 
   def create
     theatre = Theatre.create(theatre_params)
-    # TheatreChannel.broadcast_to(theatre, state)
     render json: theatre
   end
 
   def show
     theatre = Theatre.find(params[:id])
-    # byebug
     TheatreChannel.broadcast_to(theatre, theatre)
     render json: theatre
   end
@@ -18,7 +22,6 @@ class Api::V1::TheatresController < ApplicationController
     theatre.update(playing: params[:playing], muted: params[:muted], elapsed_time: params[:elapsed_time])
     TheatreChannel.broadcast_to(theatre, theatre)
     render json: theatre
-
   end
 
   def destroy
