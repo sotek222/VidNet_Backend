@@ -33,10 +33,10 @@ class Api::V1::UsersController < ApplicationController
     user = User.find(params[:id])
     # Must update password, not username
     user.update(image: params[:image], email: params[:email], location: params[:location])
-    render json: user
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
-  def delete
+  def destroy
     user = User.find(params[:id])
     user.destroy
     render json: user
