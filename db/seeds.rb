@@ -12,4 +12,7 @@
 # t.string "image"
 # t.string "location"
 
-User.create(username: "lizardmen22", password_digest: "123", email: "sotek222@yahoo.com", location: "15 Inwood Ave, Point Lookout NY, 11569")
+
+20.times do
+  User.create(username: Faker::Internet.unique.username, password_digest: "123", email: Faker::Internet.safe_email, location: Faker::Address.full_address, image: Faker::Avatar.image)
+end

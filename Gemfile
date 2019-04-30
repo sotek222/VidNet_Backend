@@ -18,6 +18,9 @@ gem 'puma', '~> 3.11'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
+# Use faker for generating fake seed data, for testing 
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
 # Use rubocop to beautify ruby code
 gem 'rubocop-performance'
 
