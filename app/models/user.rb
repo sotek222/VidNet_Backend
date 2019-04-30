@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :theatres, through: :theatre_users
   # Still need to set up the one to many with theatre through host_id
   has_many :theatres
+
 end

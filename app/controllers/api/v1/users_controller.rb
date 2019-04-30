@@ -18,7 +18,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    byebug
     user = User.create(user_params)
     if user.valid?
       token = encode_token({user_id: user.id, name: user.username})
@@ -33,7 +32,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find(params[:id])
     # Must update password, not username
     user.update(image: params[:image], email: params[:email], location: params[:location])
-    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+    render json: { user: UserSerializer.new(user) }, status: :accepted
   end
 
   def destroy
