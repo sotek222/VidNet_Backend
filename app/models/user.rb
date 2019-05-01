@@ -12,4 +12,10 @@ class User < ApplicationRecord
   # Still need to set up the one to many with theatre through host_id
   has_many :theatres
 
+  def friend_ships
+    Friend.all.select do |fs|
+      fs.friender_id == self.id
+    end
+  end
+
 end

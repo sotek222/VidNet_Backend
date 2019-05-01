@@ -12,13 +12,16 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
+# Use awesome print for pretty printing your rails output
+gem 'awesome_print'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
-# Use faker for generating fake seed data, for testing 
+# Use faker for generating fake seed data, for testing
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 # Use rubocop to beautify ruby code

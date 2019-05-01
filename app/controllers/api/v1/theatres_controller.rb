@@ -18,13 +18,14 @@ class Api::V1::TheatresController < ApplicationController
   end
 
   def update
-    # using specific params to change the response from actioncable
-    # if the params[:seek] or whatever, then broadcast that message
-    # on the frontend, use control flow in the on recieved. If seek is sent back then
-    # seek to that time. 
     theatre = Theatre.find(params[:id])
-    theatre.update(playing: params[:playing], muted: params[:muted], elapsed_time: params[:elapsed_time])
-    TheatreChannel.broadcast_to(theatre, theatre)
+    if request.headers[:seeking]
+      theatre.update(playing: params[:playing], muted: params[:muted], elapsed_time: params[:elapsed_time])
+      TheatreChannel.broadcast_to(theatre, {time: params[:elapsed_time]})
+    else
+      theatre.update(playing: params[:playing], muted: params[:muted], elapsed_time: params[:elapsed_time])
+      TheatreChannel.broadcast_to(theatre, theatre)
+    end
     render json: theatre
   end
 

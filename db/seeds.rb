@@ -14,5 +14,5 @@
 
 
 20.times do
-  User.create(username: Faker::Internet.unique.username, password_digest: "123", email: Faker::Internet.safe_email, location: Faker::Address.full_address, image: Faker::Avatar.image)
+  User.create(username: Faker::Internet.unique.username, password_digest: "123", email: Faker::Internet.unique.safe_email, location: Faker::Address.unique.full_address, image: Faker::Avatar.unique.image)
 end

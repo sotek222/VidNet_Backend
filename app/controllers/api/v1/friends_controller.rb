@@ -7,7 +7,13 @@ class Api::V1::FriendsController < ApplicationController
   end
 
   def create
-    friend = Friend.create(friender_id: params[:user_id], friendee_id: params[:friend_id])
+    friend = Friend.create(friender_id: params[:friender_id], friendee_id: params[:friendee_id])
     render json: friend
+  end
+
+  def destroy
+    friendShip = Friend.find(params[:id])
+    friendShip.destroy
+    render json: friendShip
   end
 end
