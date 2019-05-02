@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :theatre_users
       resources :theatres
       resources :users
+      resources :messages
+      resources :inboxes
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
     end

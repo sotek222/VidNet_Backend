@@ -16,4 +16,5 @@ class Api::V1::FriendsController < ApplicationController
     friendShip.destroy
     render json: friendShip
   end
+
 end

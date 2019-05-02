@@ -20,6 +20,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.valid?
+      Inbox.create(user_id: user.id)
       token = encode_token({user_id: user.id, name: user.username})
       render json: { user: UserSerializer.new(user), jwt: token }, status: :created
     else
