@@ -1,4 +1,4 @@
 class InboxSerializer < ActiveModel::Serializer
-  attributes :id, :recieved_messages
+  attributes :id, :received_messages
   has_one :user
 end

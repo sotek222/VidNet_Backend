@@ -30,4 +30,8 @@ class User < ApplicationRecord
     self.inboxes.first
   end
 
+  def received_messages
+    self.inbox.messages
+  end
+
 end

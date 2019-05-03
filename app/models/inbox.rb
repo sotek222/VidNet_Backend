@@ -3,7 +3,7 @@ class Inbox < ApplicationRecord
   has_many :messages, dependent: :destroy
 
 
-  def recieved_messages
+  def received_messages
     self.messages
   end
 end

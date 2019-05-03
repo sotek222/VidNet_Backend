@@ -10,7 +10,7 @@ class Api::V1::MessagesController < ApplicationController
   def create
     message = Message.create(message_params)
 
-    render json: message
+    render json: { message: MessageSerializer.new(message) }, status: :accepted
   end
 
   def destroy
