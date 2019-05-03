@@ -9,7 +9,8 @@ class Api::V1::MessagesController < ApplicationController
 
   def create
     message = Message.create(message_params)
-
+    inbox = Inbox.find(params[:message]["inbox_id"])
+    InboxChannel.broadcast_to(inbox, message)
     render json: { message: MessageSerializer.new(message) }, status: :accepted
   end
 
