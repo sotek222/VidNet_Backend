@@ -44,7 +44,7 @@ class Api::V1::TheatresController < ApplicationController
   private
 
   def theatre_params
-    params.require(:theatre).permit(:host_id, :src, :text_chat, :audio_chat, :video_chat, :is_public, :playing, :muted, :elapsed_time)
+    params.require(:theatre).permit(:host_id, :src, :text_chat, :audio_chat, :video_chat, :is_public, :playing, :muted, :elapsed_time, :title)
   end
 
 end
