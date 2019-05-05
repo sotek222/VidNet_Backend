@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_001952) do
+ActiveRecord::Schema.define(version: 2019_05_03_160735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "theatre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theatre_id"], name: "index_chats_on_theatre_id"
+  end
 
   create_table "friends", force: :cascade do |t|
     t.integer "friender_id"
@@ -37,6 +44,16 @@ ActiveRecord::Schema.define(version: 2019_05_02_001952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["inbox_id"], name: "index_messages_on_inbox_id"
+  end
+
+  create_table "texts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "chat_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_texts_on_chat_id"
+    t.index ["user_id"], name: "index_texts_on_user_id"
   end
 
   create_table "theatre_users", force: :cascade do |t|
@@ -72,8 +89,11 @@ ActiveRecord::Schema.define(version: 2019_05_02_001952) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "chats", "theatres"
   add_foreign_key "inboxes", "users"
   add_foreign_key "messages", "inboxes"
+  add_foreign_key "texts", "chats"
+  add_foreign_key "texts", "users"
   add_foreign_key "theatre_users", "theatres"
   add_foreign_key "theatre_users", "users"
 end

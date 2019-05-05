@@ -6,10 +6,8 @@ class TheatreChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # puts "unsub"
     # x = Theatre.find(params[:theatre_id])
     # x.unsubscribe()
     raise "huh?"
-    # Any cleanup needed when channel is unsubscribed
   end
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :users
       resources :messages
       resources :inboxes
+      resources :texts
+      resources :chats
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
     end

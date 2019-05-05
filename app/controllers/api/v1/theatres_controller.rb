@@ -1,5 +1,5 @@
 class Api::V1::TheatresController < ApplicationController
-  skip_before_action :authorized, only: [:show, :update]
+  skip_before_action :authorized, only: [:index, :show, :update]
 
   def index
     theatres = Theatre.all
@@ -8,7 +8,13 @@ class Api::V1::TheatresController < ApplicationController
 
   def create
     theatre = Theatre.create(theatre_params)
-    render json: theatre
+
+    if theatre.valid? && params[:theatre][:text_chat]
+      chat = Chat.create(theatre_id: theatre.id)
+      render json: theatre
+    else
+      render json: theatre
+    end
   end
 
   def show
