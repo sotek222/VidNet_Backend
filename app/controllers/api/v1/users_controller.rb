@@ -31,8 +31,7 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    # Must update password, not username
-    user.update(image: params[:image], email: params[:email], location: params[:location])
+    user.update(image: params[:image], email: params[:email])
     render json: { user: UserSerializer.new(user) }, status: :accepted
   end
 
@@ -46,6 +45,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :email, :image, :location)
+    params.require(:user).permit(:username, :password, :email, :image)
   end
 end
