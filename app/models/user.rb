@@ -6,15 +6,14 @@ class User < ApplicationRecord
 
   has_many :friending_users, foreign_key: :friendee_id, class_name: 'Friend'
   has_many :frienders, through: :friending_users
-# has many through between user and theatre
-  has_many :theatre_users
-  has_many :theatres, through: :theatre_users
 
-# User has many theatres as a host_id
+# User has many theatres as a host
   has_many :theatres, dependent: :destroy
 
   has_many :inboxes, dependent: :destroy
   has_many :messages, foreign_key: "sender_id", class_name: "Message"
+
+  has_many :texts
 
   def sent_messages
     self.messages

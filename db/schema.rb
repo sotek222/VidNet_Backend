@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_210937) do
+ActiveRecord::Schema.define(version: 2019_05_05_212356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,15 +56,6 @@ ActiveRecord::Schema.define(version: 2019_05_05_210937) do
     t.index ["user_id"], name: "index_texts_on_user_id"
   end
 
-  create_table "theatre_users", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "theatre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["theatre_id"], name: "index_theatre_users_on_theatre_id"
-    t.index ["user_id"], name: "index_theatre_users_on_user_id"
-  end
-
   create_table "theatres", force: :cascade do |t|
     t.integer "host_id"
     t.string "src"
@@ -93,6 +84,4 @@ ActiveRecord::Schema.define(version: 2019_05_05_210937) do
   add_foreign_key "messages", "inboxes"
   add_foreign_key "texts", "chats"
   add_foreign_key "texts", "users"
-  add_foreign_key "theatre_users", "theatres"
-  add_foreign_key "theatre_users", "users"
 end
