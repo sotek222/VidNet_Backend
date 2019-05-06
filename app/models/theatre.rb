@@ -5,4 +5,8 @@ class Theatre < ApplicationRecord
   def chat
     self.chats.first
   end
+
+  def host
+    User.find(self.host_id)
+  end
 end

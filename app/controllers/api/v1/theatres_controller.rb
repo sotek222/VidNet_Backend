@@ -1,8 +1,15 @@
 class Api::V1::TheatresController < ApplicationController
-  skip_before_action :authorized, only: [:index, :show, :update]
+  skip_before_action :authorized, only: [:index, :show, :update, :filtered_theatres]
 
   def index
     theatres = Theatre.all
+    render json: theatres
+  end
+
+  def filtered_theatres
+    theatres = Theatre.all.select do |theatre|
+      theatre.is_public
+    end
     render json: theatres
   end
 

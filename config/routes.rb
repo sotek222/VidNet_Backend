@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :inboxes
       resources :texts
       resources :chats
+      get '/filtered', to: 'theatres#filtered_theatres'
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
     end
