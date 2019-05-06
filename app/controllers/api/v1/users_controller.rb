@@ -36,8 +36,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
+    # destroys inbox before destroying
+    # messages which then causes a conflict
     user = User.find(params[:id])
-
     user.destroy
     render json: user
   end

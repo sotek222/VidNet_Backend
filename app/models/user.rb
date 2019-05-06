@@ -1,19 +1,17 @@
 class User < ApplicationRecord
   has_secure_password
-# Friendships self join
-  has_many :friendered_users, foreign_key: :friender_id, class_name: 'Friend'
+
+  has_many :theatres, foreign_key: "host_id", class_name: "Theatre", dependent: :destroy
+  has_many :texts, dependent: :destroy
+
+  has_many :messages, foreign_key: "sender_id", class_name: "Message", dependent: :destroy
+  has_many :inboxes, dependent: :destroy
+
+  has_many :friendered_users, foreign_key: :friender_id, class_name: 'Friend', dependent: :destroy
   has_many :friendees, through: :friendered_users
 
-  has_many :friending_users, foreign_key: :friendee_id, class_name: 'Friend'
+  has_many :friending_users, foreign_key: :friendee_id, class_name: 'Friend', dependent: :destroy
   has_many :frienders, through: :friending_users
-
-# User has many theatres as a host
-  has_many :theatres, dependent: :destroy
-
-  has_many :inboxes, dependent: :destroy
-  has_many :messages, foreign_key: "sender_id", class_name: "Message"
-
-  has_many :texts
 
   def sent_messages
     self.messages
