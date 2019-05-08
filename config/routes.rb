@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get '/filtered', to: 'theatres#filtered_theatres'
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
+      post '/get_my_friends', to: 'friends#filtered'
     end
   end
 

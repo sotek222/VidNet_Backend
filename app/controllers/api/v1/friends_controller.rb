@@ -11,6 +11,13 @@ class Api::V1::FriendsController < ApplicationController
     render json: friend
   end
 
+  def filtered
+    friends = Friend.all.select do |friend|
+      friend.friender_id == params[:user_id]
+    end
+    render json: friends
+  end
+
   def destroy
     friendShip = Friend.find(params[:id])
     friendShip.destroy
