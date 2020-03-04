@@ -17,11 +17,11 @@ class User < ApplicationRecord
     self.messages
   end
 
-  def friend_ships
-    Friend.all.select do |fs|
-      fs.friender_id == self.id
-    end
-  end
+  # def friend_ships
+  #   Friend.all.select do |fs|
+  #     fs.friender_id == self.id
+  #   end
+  # end
 
   def inbox
     self.inboxes.first

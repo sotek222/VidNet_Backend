@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Api::V1::TextsController < ApplicationController
-  skip_before_action :authorized, only: [:create, :index]
+  skip_before_action :authorized, only: %i[create index]
 
   def index
     texts = Text.all
@@ -8,7 +10,7 @@ class Api::V1::TextsController < ApplicationController
 
   def create
     text = Text.new(text_params)
-    chat = Chat.find(params[:text]["chat_id"])
+    chat = Chat.find(params[:text]['chat_id'])
     ChatChannel.broadcast_to(chat, TextSerializer.new(text))
     render json: text
   end
@@ -18,5 +20,4 @@ class Api::V1::TextsController < ApplicationController
   def text_params
     params.require(:text).permit(:user_id, :chat_id, :content)
   end
-
 end

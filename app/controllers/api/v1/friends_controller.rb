@@ -19,9 +19,8 @@ class Api::V1::FriendsController < ApplicationController
   end
 
   def destroy
-    friendShip = Friend.find(params[:id])
-    friendShip.destroy
-    render json: friendShip
+    friendship = Friend.find_by(friender_id: params[:user_id], friendee_id: params[:friend_id])
+    friendship.destroy
+    render json: friendship
   end
-
 end
